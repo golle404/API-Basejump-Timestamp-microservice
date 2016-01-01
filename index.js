@@ -10,7 +10,9 @@ app.get("/:timestamp", function(req, res){
 	var p;
 	if(validator.isNumeric(req.params.timestamp)){
 		p = parseInt(req.params.timestamp) *1000;
-	} 
+	} else{
+		p = req.params.timestamp;
+	}
 	var param = new Date(p);
 	var rsp = {unix:null, natural: null};
 

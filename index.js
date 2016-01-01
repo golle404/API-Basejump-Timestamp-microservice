@@ -1,11 +1,17 @@
 var express = require("express");
 var dateFormat = require("dateformat");
+var validator = require("validator");
 
 var app = express();
 
 
 app.get("/:timestamp", function(req, res){
-	var param = new Date(req.params.timestamp);
+
+	var p;
+	if(validator.isNumeric(req.params.timestamp)){
+		p = parseInt(req.params.timestamp) *1000;
+	} 
+	var param = new Date(p);
 	var rsp = {unix:null, natural: null};
 
 	if(param != "Invalid Date"){
